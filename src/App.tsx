@@ -2,6 +2,8 @@ import { useState } from "react";
 import KaTeXRender from "./KaTeXRender";
 import "./styles.css";
 import { Input } from "./components/Input";
+import { Buttons } from "./components/Buttons";
+import { ResultBox } from "./components/ResultBox";
 
 export default function App() {
   type ApiResponse = {
@@ -34,21 +36,8 @@ export default function App() {
     <>
       <Input inputText={inputText} setInputText={setInputText}></Input>
       <KaTeXRender expression={inputText}></KaTeXRender>
-      <div>
-        {data ? (
-          <>
-            <p>
-              <KaTeXRender expression={data.result} />
-            </p>
-          </>
-        ) : (
-          <p>No data yet.</p>
-        )}
-      </div>
-      <div className="operation-container"></div>
-      <button onClick={() => fetchData("integrate", inputText)}>
-        Fetch Data
-      </button>{" "}
+      <Buttons inputText={inputText} fetchData={fetchData}></Buttons>
+      <ResultBox data={data}></ResultBox>
     </>
   );
 }

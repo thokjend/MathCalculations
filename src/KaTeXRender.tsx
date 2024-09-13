@@ -64,9 +64,6 @@ const KaTeXRender: React.FC<KaTeXProps> = ({ expression, filter = false }) => {
     return filteredList.join(" ");
   };
 
-  //console.log(expressionList);
-
-  //console.log(filteredList);
   const expressionToRender = filter ? filterExpression(expression) : expression;
 
   const html = katex.renderToString(expressionToRender, {
