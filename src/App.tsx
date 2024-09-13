@@ -4,6 +4,7 @@ import "./styles.css";
 import { Input } from "./components/Input";
 import { Buttons } from "./components/Buttons";
 import { ResultBox } from "./components/ResultBox";
+import { ViewInput } from "./components/ViewInput";
 
 export default function App() {
   type ApiResponse = {
@@ -35,7 +36,7 @@ export default function App() {
   return (
     <>
       <Input inputText={inputText} setInputText={setInputText}></Input>
-      <KaTeXRender expression={inputText}></KaTeXRender>
+      <ViewInput inputText={inputText}></ViewInput>
       <Buttons inputText={inputText} fetchData={fetchData}></Buttons>
       <ResultBox data={data}></ResultBox>
     </>
