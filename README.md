@@ -5,7 +5,7 @@ This is a React-based math application that allows users to solve mathematical p
 ## Install
 
 ```
-
+npm install
 ```
 
 ## Running the Application
