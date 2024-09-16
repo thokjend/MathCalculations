@@ -7,14 +7,52 @@ type KaTeXProps = {
   filter?: boolean;
 };
 
-const KaTeXRender: React.FC<KaTeXProps> = ({ expression, filter = false }) => {
+/* const KaTeXRender: React.FC<KaTeXProps> = ({ expression }) => {
   const filterExpression = (expression: string) => {
-    const formattedExpression: string = expression.replace(
-      /exp\((.*?)\)/g, // Matches exp(inside parentheses)
-      "e^{$1}" // Replace with LaTeX-compatible format
+    const filterWhitespace: string = expression.replace(/\s+/g, "");
+    const formattedExpression: string = filterWhitespace.replace(
+      /exp\((.*?)\)/g,
+      "e^{$1}"
     );
-    const expressionList: string[] = formattedExpression.split(" ");
+    const handlePowers: string = formattedExpression.replace(
+      /\^\((-?[0-9a-zA-Z]+)\)/g,
+      "^{$1}"
+    );
 
+    const expressionList: string[] = handlePowers.split(/([+\-*])/);
+    console.log(expressionList);
+
+    return expressionList.join(" ");
+  };
+
+  const expressionToRender = filterExpression(expression);
+
+  const html = katex.renderToString(expressionToRender, {
+    throwOnError: false,
+  });
+
+  return (
+    <div className="display-input" dangerouslySetInnerHTML={{ __html: html }} />
+  );
+  
+}; */
+
+const KaTeXRender: React.FC<KaTeXProps> = ({ expression }) => {
+  const filterExpression = (expression: string) => {
+    // Replace exp() with e^{...} for exponential expressions
+    const formattedExpression: string = expression.replace(
+      /exp\((.*?)\)/g,
+      "e^{$1}"
+    );
+
+    // Handle powers with the custom function
+    const handlePowers: string = formattedExpression.replace(
+      /([a-zA-Z0-9]+)\^\((.*?)\)/g,
+      "$1^{$2}"
+    );
+
+    // Handle the remaining formatting rules
+    const expressionList: string[] = handlePowers.split(" ");
     const filteredList: string[] = [];
 
     const containsMultipleTerms = (str: string) => {
@@ -64,7 +102,7 @@ const KaTeXRender: React.FC<KaTeXProps> = ({ expression, filter = false }) => {
     return filteredList.join(" ");
   };
 
-  const expressionToRender = filter ? filterExpression(expression) : expression;
+  const expressionToRender = filterExpression(expression);
 
   const html = katex.renderToString(expressionToRender, {
     throwOnError: false,

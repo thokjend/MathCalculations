@@ -1,10 +1,9 @@
 import { useState } from "react";
-import KaTeXRender from "./KaTeXRender";
-import "./styles.css";
 import { Input } from "./components/Input";
 import { Buttons } from "./components/Buttons";
 import { ResultBox } from "./components/ResultBox";
 import { ViewInput } from "./components/ViewInput";
+import "./styles.css";
 
 export default function App() {
   type ApiResponse = {
