@@ -2,6 +2,10 @@
 
 Simple math application that allows users to solve mathematical problems using the [Newton API](https://github.com/aunyks/newton-api) and render equations in formatted math notation with [KaTeX](https://katex.org/docs/api).
 
+## Work in progress
+
+Still some problems with fraction and negative exponents
+
 ## Install
 
 ```
