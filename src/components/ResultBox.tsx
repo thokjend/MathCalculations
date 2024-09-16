@@ -11,7 +11,7 @@ export function ResultBox({ data }: ResultBoxProps) {
   return (
     <>
       <h1>Result</h1>
-      <KaTeXRender expression={data.result} filter={true} />
+      <KaTeXRender expression={data.result} />
     </>
   );
 }
